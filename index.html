@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С Годовщиной, моя любовь 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #f2a7c3;
+    --blush: #fde8f0;
+    --petal: #fbc8dc;
+    --deep: #c4607a;
+    --cream: #fff5f8;
+    --gold: #e8b4c0;
+    --text: #7a3a50;
+    --soft: #d4809a;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  #particles-canvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    display: none;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.8s ease forwards;
+  }
+  .page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── DECORATIVE BACKGROUND LAYERS ── */
+  .deco-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  /* Animated mesh gradient that shifts */
+  .deco-mesh {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 15%, rgba(255,182,213,0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 80%, rgba(255,160,200,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 50% 50%, rgba(252,228,236,0.3) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 10%, rgba(245,198,208,0.4) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 40% at 20% 90%, rgba(255,210,228,0.3) 0%, transparent 60%),
+      linear-gradient(160deg, #fff0f7 0%, #fde8f2 35%, #fff5fb 65%, #fce4ef 100%);
+    animation: meshShift 18s ease-in-out infinite alternate;
+  }
+  @keyframes meshShift {
+    0%   { filter: hue-rotate(0deg) brightness(1); }
+    50%  { filter: hue-rotate(8deg) brightness(1.03); }
+    100% { filter: hue-rotate(-5deg) brightness(0.98); }
+  }
+
+  /* Corner floral ornaments */
+  .deco-corner {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+  }
+  .deco-corner.tl { top: -20px; left: -20px; transform: rotate(0deg); }
+  .deco-corner.tr { top: -20px; right: -20px; transform: rotate(90deg); }
+  .deco-corner.bl { bottom: -20px; left: -20px; transform: rotate(270deg); }
+  .deco-corner.br { bottom: -20px; right: -20px; transform: rotate(180deg); }
+
+  /* Floating petals CSS animation layer */
+  .css-petal {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: cssFloat linear infinite;
+  }
+  @keyframes cssFloat {
+    0%   { transform: translateY(110vh) rotate(0deg) scale(0.6); opacity: 0; }
+    5%   { opacity: 0.55; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-60px) rotate(720deg) scale(1.1); opacity: 0; }
+  }
+
+  /* Wavy decorative dividers inside pages */
+  .page-wave {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    opacity: 0.22;
+  }
+  .page-wave.top { top: 0; }
+  .page-wave.bottom { bottom: 0; transform: scaleY(-1); }
+
+  /* Subtle dot grid pattern overlay */
+  .deco-dots {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: radial-gradient(circle, rgba(196,96,122,0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* PAGE 1 */
+  #page1 {
+    background: transparent;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+  }
+
+  .date-ribbon {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: var(--soft);
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: slideDown 1s 0.3s forwards;
+  }
+
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3.4rem);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--deep);
+    line-height: 1.2;
+    opacity: 0;
+    animation: slideDown 1s 0.6s forwards;
+    text-shadow: 2px 2px 30px rgba(196, 96, 122, 0.15);
+  }
+
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--soft);
+    margin-top: 16px;
+    opacity: 0;
+    animation: slideDown 1s 0.9s forwards;
+  }
+
+  .heart-divider {
+    font-size: 2rem;
+    color: var(--rose);
+    margin: 24px 0;
+    opacity: 0;
+    animation: heartBeat 1.5s 1.2s infinite, slideDown 1s 1s forwards;
+  }
+
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .love-poem {
+    max-width: 540px;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    line-height: 1.9;
+    font-weight: 300;
+    color: var(--text);
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: slideDown 1s 1.2s forwards;
+    font-style: italic;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: slideDown 1s 1.5s forwards;
+  }
+
+  .btn {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    box-shadow: 0 6px 24px rgba(196, 96, 122, 0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(196, 96, 122, 0.5);
+  }
+
+  .btn-outline {
+    background: linear-gradient(135deg, rgba(255,255,255,0.6), var(--blush));
+    color: var(--deep);
+    border: 1.5px solid var(--rose);
+    box-shadow: 0 6px 20px rgba(242, 167, 195, 0.2);
+  }
+  .btn-outline:hover {
+    background: linear-gradient(135deg, var(--blush), var(--petal));
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(242, 167, 195, 0.4);
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 60px 20px 30px;
+  }
+
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-style: italic;
+    color: var(--deep);
+  }
+
+  .page-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--soft);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 20px; left: 20px;
+    z-index: 100;
+    background: white;
+    border: 2px solid var(--rose);
+    color: var(--deep);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    padding: 10px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(242, 167, 195, 0.3);
+    transition: all 0.3s;
+    display: none;
+  }
+  .back-btn.visible { display: block; }
+  .back-btn:hover { background: var(--blush); transform: translateY(-2px); }
+
+  /* PAGE 2 */
+  #page2 {
+    background: transparent;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .photos-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--soft);
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    width: 100%;
+    padding: 0 10px 40px;
+  }
+
+  .photo-card {
+    background: white;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 8px 32px rgba(196, 96, 122, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(242, 167, 195, 0.3);
+  }
+  .photo-card:hover {
+    transform: translateY(-8px) rotate(1deg);
+    box-shadow: 0 20px 50px rgba(196, 96, 122, 0.25);
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--blush), var(--petal));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--soft);
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+    animation: shimmer 2.5s infinite;
+  }
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+
+  .photo-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    color: var(--deep);
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .photo-upload-hint {
+    font-size: 0.75rem;
+    color: var(--rose);
+    text-align: center;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ── PHOTO MODAL ── */
+  .photo-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(80, 20, 40, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .photo-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .photo-modal {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(242,167,195,0.4);
+    border-radius: 28px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow:
+      0 32px 80px rgba(196,96,122,0.3),
+      0 4px 20px rgba(242,167,195,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    transform: scale(0.88) translateY(24px);
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease;
+    opacity: 0;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rose) transparent;
+  }
+  .photo-modal-overlay.open .photo-modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(242,167,195,0.2);
+    border: 1.5px solid rgba(242,167,195,0.5);
+    color: var(--deep);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover {
+    background: var(--rose);
+    color: white;
+    transform: rotate(90deg);
+  }
+
+  .modal-image-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--blush), var(--petal));
+  }
+  .modal-image-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .modal-image-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    position: relative;
+  }
+  .modal-image-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+    animation: shimmer 2.5s infinite;
+  }
+
+  .modal-body {
+    padding: 28px 32px 36px;
+  }
+
+  .modal-tag {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    color: var(--rose);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-style: italic;
+    color: var(--deep);
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+
+  .modal-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .modal-divider::before, .modal-divider::after {
+    content: ''; flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+  }
+  .modal-divider-heart { font-size: 1rem; }
+
+  .modal-description {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+
+  .modal-wish-card {
+    background: linear-gradient(135deg, rgba(252,228,236,0.7), rgba(251,200,220,0.4));
+    border: 1px solid rgba(242,167,195,0.35);
+    border-radius: 16px;
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .modal-wish-card::before {
+    content: '❝';
+    position: absolute;
+    top: 8px; left: 14px;
+    font-size: 2.5rem;
+    color: var(--rose);
+    opacity: 0.3;
+    font-family: serif;
+    line-height: 1;
+  }
+  .modal-wish-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.95rem;
+    color: var(--soft);
+    margin-bottom: 8px;
+    padding-left: 24px;
+  }
+  .modal-wish-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--deep);
+    padding-left: 24px;
+  }
+
+  .modal-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 10px 24px;
+    border: 1.5px dashed var(--rose);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--soft);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .modal-upload-btn:hover {
+    background: var(--blush);
+    border-style: solid;
+    color: var(--deep);
+  }
+
+  /* Update photo-card cursor */
+  .photo-card { cursor: pointer; }
+
+  /* PAGE 3 */
+  #page3 {
+    background: transparent;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  .timeline {
+    max-width: 680px;
+    width: 100%;
+    padding: 20px 10px 60px;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--rose), var(--petal), transparent);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+    position: relative;
+    align-items: flex-start;
+  }
+  .timeline-item:nth-child(odd) { flex-direction: row; }
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 16px;
+    transform: translateX(-50%);
+    width: 18px; height: 18px;
+    background: var(--rose);
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 15px rgba(242, 167, 195, 0.6);
+    z-index: 2;
+  }
+
+  .timeline-content {
+    width: calc(50% - 30px);
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 6px 25px rgba(196, 96, 122, 0.12);
+    border: 1px solid rgba(242, 167, 195, 0.25);
+    transition: transform 0.3s;
+  }
+  .timeline-content:hover { transform: scale(1.02); }
+
+  .timeline-year {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: var(--rose);
+    margin-bottom: 6px;
+  }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--deep);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .timeline-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  .edit-note {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px dashed var(--rose);
+    border-radius: 16px;
+    padding: 20px 28px;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+    font-style: italic;
+    color: var(--soft);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .timeline { padding: 10px 0 40px; }
+    .timeline::before { left: 16px; }
+    .timeline-item {
+      flex-direction: column !important;
+      padding-left: 44px;
+      margin-bottom: 28px;
+    }
+    .timeline-dot { left: 8px; top: 10px; width: 16px; height: 16px; }
+    .timeline-content {
+      width: 100% !important;
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+    .timeline-year { font-size: 1.1rem; }
+    .timeline-title { font-size: 1rem; }
+    .timeline-text { font-size: 0.88rem; line-height: 1.6; }
+    .tl-photo { height: 160px; border-radius: 10px; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 480px) {
+    /* Hero card */
+    .hero-card { padding: 28px 20px 28px; border-radius: 24px; width: 94%; }
+
+    /* Nav buttons — одна колонка */
+    .nav-buttons { flex-direction: column; align-items: center; gap: 10px; }
+    .btn { width: 100%; max-width: 280px; padding: 13px 20px; font-size: 1rem; }
+
+    /* Back button */
+    .back-btn { top: 10px; left: 10px; padding: 8px 16px; font-size: 0.9rem; }
+
+    /* Page header */
+    .page-header { padding: 44px 16px 18px; }
+
+    /* Photo grid — одна колонка */
+    .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 6px 30px; }
+
+    /* Photo modal */
+    .photo-modal { border-radius: 20px; }
+    .modal-body { padding: 20px 18px 28px; }
+
+    /* Calendar */
+    .cal-wrap { padding: 16px 12px; }
+    .counter-top-label { font-size: 1rem; }
+    .counter-main-row { gap: 8px; }
+    .counter-box { padding: 10px 12px; min-width: 60px; }
+
+    /* Confession / Future letter */
+    .confession-paper,
+    .future-paper { padding: 28px 18px 24px; }
+
+    /* Song page */
+    .vinyl { width: 120px; height: 120px; }
+    .vinyl-center { width: 36px; height: 36px; font-size: 1rem; }
+    .song-photo { width: 160px; height: 160px; }
+
+    /* Reasons grid */
+    .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+    /* Map */
+    #loveMap { height: 320px !important; }
+    .map-legend { gap: 7px; }
+    .map-legend-item { padding: 5px 10px; font-size: 0.82rem; }
+
+    /* Splash */
+    .splash-btn { padding: 12px 36px; font-size: 1.1rem; }
+
+    /* Future countdown */
+    .future-count-box { padding: 10px 12px; min-width: 60px; }
+  }
+
+  /* ── HERO PHOTO ── */
+  .hero-photo-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0 4px;
+  }
+  .hero-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow:
+      0 0 0 3px var(--rose),
+      0 8px 28px rgba(196,96,122,0.28);
+    animation: heroPulse 3s ease-in-out infinite;
+  }
+  @keyframes heroPulse {
+    0%, 100% { box-shadow: 0 0 0 3px var(--rose), 0 8px 28px rgba(196,96,122,0.28); }
+    50%       { box-shadow: 0 0 0 5px var(--petal), 0 10px 36px rgba(196,96,122,0.42); }
+  }
+
+
+  /* ── TIMELINE PHOTO ── */
+  .tl-photo {
+    width: 100%;
+    height: 110px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid rgba(242,167,195,0.35);
+    box-shadow: 0 4px 14px rgba(196,96,122,0.15);
+    display: block;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(242,167,195,0.35);
+    border-radius: 32px;
+    padding: 48px 52px 44px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow:
+      0 8px 40px rgba(196,96,122,0.14),
+      0 2px 8px rgba(255,182,213,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.7);
+    position: relative;
+    text-align: center;
+    margin: 20px auto;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 33px;
+    background: linear-gradient(135deg, rgba(242,167,195,0.4), rgba(255,255,255,0.1), rgba(251,200,220,0.35));
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Small rose ornament lines around hero card */
+  .hero-card .ornament-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin: 18px 0;
+    opacity: 0.6;
+    font-size: 1rem;
+    color: var(--rose);
+    letter-spacing: 0.2em;
+  }
+  .hero-card .ornament-line::before,
+  .hero-card .ornament-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+  }
+
+  /* Enhanced photo cards */
+  .photo-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow:
+      0 8px 32px rgba(196,96,122,0.15),
+      0 1px 0 rgba(255,255,255,0.8) inset;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(242,167,195,0.35);
+  }
+
+  /* Enhanced timeline cards */
+  .timeline-content {
+    width: calc(50% - 30px);
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow:
+      0 6px 25px rgba(196,96,122,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+    border: 1px solid rgba(242,167,195,0.28);
+    transition: transform 0.3s;
+  }
+
+  /* Decorative scattered roses in background (CSS only) */
+  .bg-rose {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    font-size: 2.5rem;
+    opacity: 0.06;
+    animation: slowSpin linear infinite;
+  }
+  @keyframes slowSpin {
+    from { transform: rotate(0deg) scale(1); }
+    to   { transform: rotate(360deg) scale(1.05); }
+  }
+
+  /* ── MUSIC PAGE ── */
+  .song-wrap {
+    max-width: 520px;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .vinyl-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .vinyl {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #3a1a2e 0deg, #6b2d4e 30deg, #3a1a2e 60deg,
+      #6b2d4e 90deg, #3a1a2e 120deg, #6b2d4e 150deg,
+      #3a1a2e 180deg, #6b2d4e 210deg, #3a1a2e 240deg,
+      #6b2d4e 270deg, #3a1a2e 300deg, #6b2d4e 330deg, #3a1a2e 360deg
+    );
+    box-shadow:
+      0 0 0 4px rgba(242,167,195,0.3),
+      0 12px 40px rgba(58,26,46,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: vinylSpin 4s linear infinite paused;
+  }
+  .vinyl.playing { animation-play-state: running; }
+
+  @keyframes vinylSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .vinyl::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    background: conic-gradient(
+      rgba(242,167,195,0.15) 0deg, transparent 60deg,
+      rgba(242,167,195,0.1) 120deg, transparent 180deg,
+      rgba(242,167,195,0.15) 240deg, transparent 300deg
+    );
+  }
+
+  .vinyl-center {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    z-index: 1;
+    box-shadow: 0 2px 10px rgba(196,96,122,0.4);
+  }
+
+  .song-photo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .song-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow:
+      0 0 0 3px var(--rose),
+      0 0 0 6px rgba(242,167,195,0.3),
+      0 12px 40px rgba(196,96,122,0.3);
+    animation: photoPulse 3s ease-in-out infinite;
+  }
+  @keyframes photoPulse {
+    0%, 100% { box-shadow: 0 0 0 3px var(--rose), 0 0 0 6px rgba(242,167,195,0.3), 0 12px 40px rgba(196,96,122,0.3); }
+    50%       { box-shadow: 0 0 0 4px var(--petal), 0 0 0 9px rgba(242,167,195,0.2), 0 16px 50px rgba(196,96,122,0.4); }
+  }
+
+  .song-player {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(242,167,195,0.35);
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 8px 30px rgba(196,96,122,0.12);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .song-quote {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(242,167,195,0.3);
+    border-radius: 18px;
+    padding: 20px 24px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(196,96,122,0.1);
+  }
+  .song-quote-mark {
+    font-size: 2.5rem;
+    color: var(--rose);
+    opacity: 0.3;
+    font-family: serif;
+    line-height: 1;
+    margin-bottom: -8px;
+  }
+  .song-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.7;
+    margin: 8px 0;
+  }
+  .song-quote-sign {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    color: var(--soft);
+    margin-top: 6px;
+  }
+
+  .music-notes {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .music-note {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: noteFloat linear infinite;
+  }
+  @keyframes noteFloat {
+    0%   { transform: translateY(100%) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-80px) rotate(30deg); opacity: 0; }
+  }
+
+
+  .future-wrap {
+    max-width: 620px;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+  }
+
+  .future-countdown {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .future-count-box {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(242,167,195,0.35);
+    border-radius: 16px;
+    padding: 12px 18px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(196,96,122,0.1);
+    min-width: 70px;
+  }
+  .future-count-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 1;
+  }
+  .future-count-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.78rem;
+    color: var(--soft);
+    margin-top: 3px;
+  }
+
+  .future-locked {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(16px);
+    border: 1.5px dashed rgba(242,167,195,0.5);
+    border-radius: 24px;
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(196,96,122,0.1);
+    margin-bottom: 16px;
+  }
+  .future-lock-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    animation: lockWobble 3s ease-in-out infinite;
+  }
+  @keyframes lockWobble {
+    0%,100% { transform: rotate(-5deg); }
+    50%      { transform: rotate(5deg); }
+  }
+  .future-lock-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--deep);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .future-lock-text span {
+    color: var(--rose);
+    font-weight: 700;
+  }
+  .future-lock-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--soft);
+  }
+
+  .future-paper {
+    display: none;
+    background: rgba(255,252,254,0.93);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(242,167,195,0.3);
+    border-radius: 4px 4px 24px 24px;
+    padding: 44px 44px 36px;
+    box-shadow: 0 20px 60px rgba(196,96,122,0.13);
+    background-image: repeating-linear-gradient(
+      transparent, transparent 31px,
+      rgba(242,167,195,0.07) 31px,
+      rgba(242,167,195,0.07) 32px
+    );
+    background-size: 100% 32px;
+    animation: letterUnfold 0.8s cubic-bezier(0.34,1.2,0.64,1) both;
+  }
+  .future-paper.visible { display: block; }
+  @keyframes letterUnfold {
+    from { opacity: 0; transform: scaleY(0.6) translateY(-30px); }
+    to   { opacity: 1; transform: scaleY(1) translateY(0); }
+  }
+  .future-paper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #a78bfa, var(--rose), var(--deep));
+    border-radius: 4px 4px 0 0;
+  }
+  .future-to {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: var(--deep);
+    margin-bottom: 22px;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+  .future-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.5vw, 1.13rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 2;
+    color: var(--text);
+    margin-bottom: 18px;
+    text-indent: 1.5em;
+  }
+  .future-divider {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--rose);
+    letter-spacing: 0.4em;
+    margin: 24px 0 20px;
+    opacity: 0.7;
+  }
+  .future-sign {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--soft);
+    text-align: right;
+    line-height: 1.8;
+  }
+  .future-sign-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--deep);
+    display: block;
+  }
+
+  @media (max-width: 480px) {
+    .future-paper { padding: 30px 20px 26px; }
+  }
+
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    max-width: 720px;
+    width: calc(100% - 32px);
+    margin: 0 auto 28px;
+    padding: 4px;
+  }
+
+  .reason-card {
+    aspect-ratio: 1;
+    perspective: 800px;
+    cursor: pointer;
+  }
+
+  .reason-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.34, 1.2, 0.64, 1);
+    border-radius: 20px;
+  }
+  .reason-card.flipped .reason-inner {
+    transform: rotateY(180deg);
+  }
+
+  .reason-front, .reason-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .reason-front {
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(252,228,236,0.9));
+    border: 1.5px solid rgba(242,167,195,0.4);
+    box-shadow: 0 6px 24px rgba(196,96,122,0.12);
+  }
+  .reason-front-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .reason-front-hint {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.78rem;
+    color: var(--soft);
+    opacity: 0.7;
+  }
+  .reason-front-heart {
+    font-size: 1.6rem;
+    animation: heartbeat 1.8s ease-in-out infinite;
+    margin-bottom: 4px;
+  }
+
+  .reason-back {
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    transform: rotateY(180deg);
+    box-shadow: 0 8px 28px rgba(196,96,122,0.3);
+  }
+  .reason-back-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.82rem, 2vw, 0.95rem);
+    font-style: italic;
+    font-weight: 300;
+    color: white;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 400px) {
+    .reasons-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 700px;
+    width: calc(100% - 32px);
+    margin: 0 auto 16px;
+  }
+  .map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(242,167,195,0.35);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 10px rgba(196,96,122,0.1);
+  }
+  .map-legend-item:hover {
+    background: var(--blush);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(196,96,122,0.2);
+  }
+  .map-legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Leaflet popup custom style */
+  .love-popup .leaflet-popup-content-wrapper {
+    background: rgba(255,252,254,0.97);
+    border: 1px solid rgba(242,167,195,0.4);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(196,96,122,0.2);
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .love-popup .leaflet-popup-tip { background: rgba(255,252,254,0.97); }
+  .popup-emoji { font-size: 1.4rem; margin-bottom: 4px; display: block; }
+  .popup-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--deep); font-style: italic; }
+  .popup-desc  { font-size: 0.88rem; color: var(--soft); margin-top: 3px; font-style: italic; }
+
+
+  .confession-wrap {
+    position: relative;
+    max-width: 620px;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+  }
+
+  .confession-seal {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: -18px;
+    position: relative;
+    z-index: 2;
+    animation: sealFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(196,96,122,0.3));
+  }
+  @keyframes sealFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50%       { transform: translateY(-8px) rotate(5deg); }
+  }
+
+  .confession-paper {
+    background: rgba(255, 252, 254, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(242,167,195,0.35);
+    border-radius: 4px 4px 24px 24px;
+    padding: 44px 44px 36px;
+    position: relative;
+    box-shadow:
+      0 20px 60px rgba(196,96,122,0.15),
+      0 2px 8px rgba(242,167,195,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    /* Paper texture lines */
+    background-image:
+      repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        rgba(242,167,195,0.08) 31px,
+        rgba(242,167,195,0.08) 32px
+      );
+    background-size: 100% 32px;
+  }
+
+  /* Top wax seal strip */
+  .confession-paper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--rose), var(--deep), var(--rose));
+    border-radius: 4px 4px 0 0;
+  }
+
+  .confession-to {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: var(--deep);
+    margin-bottom: 24px;
+    opacity: 0.85;
+  }
+
+  .confession-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 2;
+    color: var(--text);
+    margin-bottom: 20px;
+    text-indent: 1.5em;
+  }
+
+  .confession-divider {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--rose);
+    letter-spacing: 0.4em;
+    margin: 28px 0 24px;
+    opacity: 0.7;
+  }
+
+  .confession-sign {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--soft);
+    text-align: right;
+    line-height: 1.8;
+  }
+  .confession-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: var(--deep);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .confession-petals {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .confession-petals span {
+    position: absolute;
+    top: -20px;
+    font-size: 1.1rem;
+    opacity: 0.5;
+    animation: confPetal 6s ease-in-out infinite;
+  }
+  @keyframes confPetal {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.2; }
+    100% { transform: translateY(110%) rotate(360deg); opacity: 0; }
+  }
+
+  @media (max-width: 480px) {
+    .confession-paper { padding: 32px 22px 28px; }
+  }
+
+
+  .together-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto 28px;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .counter-top-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: var(--soft);
+    letter-spacing: 0.06em;
+  }
+
+  .counter-main-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .counter-sep {
+    font-size: 1.8rem;
+    color: var(--rose);
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  .counter-box {
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(242,167,195,0.4);
+    border-radius: 20px;
+    padding: 16px 22px;
+    text-align: center;
+    min-width: 88px;
+    box-shadow: 0 6px 24px rgba(196,96,122,0.12);
+    transition: transform 0.3s;
+  }
+  .counter-box:hover { transform: translateY(-4px); }
+
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--deep), var(--rose));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .counter-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.88rem;
+    color: var(--soft);
+    margin-top: 4px;
+  }
+
+  .counter-days-total {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-style: italic;
+    color: var(--deep);
+    text-align: center;
+  }
+
+  .counter-clock {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, var(--rose), var(--deep), #e91e8c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    letter-spacing: 0.04em;
+    text-align: center;
+    filter: drop-shadow(0 2px 12px rgba(196,96,122,0.3));
+  }
+
+  .counter-phrase {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    font-style: italic;
+    color: var(--text);
+    text-align: center;
+    font-weight: 300;
+    max-width: 360px;
+  }
+
+  .cal-wrap {
+    background: rgba(255,255,255,0.68);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(242,167,195,0.3);
+    border-radius: 24px;
+    padding: 24px;
+    max-width: 420px;
+    width: calc(100% - 32px);
+    margin: 0 auto 24px;
+    box-shadow: 0 12px 40px rgba(196,96,122,0.13);
+  }
+
+  .cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .cal-nav-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--rose);
+    background: transparent;
+    color: var(--deep);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cal-nav-btn:hover { background: var(--blush); transform: scale(1.1); }
+
+  .cal-month-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--deep);
+    text-align: center;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .cal-dow {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.78rem;
+    color: var(--soft);
+    padding: 4px 0 8px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    color: var(--text);
+    cursor: default;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .cal-day.other-month { color: rgba(180,120,150,0.35); }
+  .cal-day.today {
+    background: rgba(242,167,195,0.25);
+    font-weight: 600;
+    color: var(--deep);
+  }
+  .cal-day.wedding-day {
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white !important;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(196,96,122,0.45);
+    animation: weddingPulse 2s ease-in-out infinite;
+  }
+  @keyframes weddingPulse {
+    0%, 100% { box-shadow: 0 4px 16px rgba(196,96,122,0.45); transform: scale(1); }
+    50% { box-shadow: 0 6px 24px rgba(196,96,122,0.7); transform: scale(1.08); }
+  }
+
+  .cal-day.wedding-day::after {
+    content: '♡';
+    position: absolute;
+    top: -10px;
+    font-size: 0.65rem;
+    color: var(--deep);
+    animation: heartFloat 1.8s ease-in-out infinite;
+  }
+  @keyframes heartFloat {
+    0%, 100% { transform: translateY(0); opacity: 0.8; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .cal-day.past-married {
+    background: rgba(242,167,195,0.12);
+  }
+
+  /* ══ SPLASH SCREEN ══════════════════════════════════════════ */
+  #splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  #splash.hide {
+    opacity: 0;
+    transform: scale(1.06);
+    pointer-events: none;
+  }
+
+  .splash-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 70% at 20% 30%, rgba(255,182,213,0.6) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 80% 70%, rgba(255,160,200,0.5) 0%, transparent 60%),
+      linear-gradient(160deg, #fde8f2 0%, #fbc8dc 40%, #f9a8ce 70%, #fde0ee 100%);
+    animation: splashBgPulse 6s ease-in-out infinite alternate;
+  }
+  @keyframes splashBgPulse {
+    from { filter: brightness(1) saturate(1); }
+    to   { filter: brightness(1.06) saturate(1.1); }
+  }
+
+  .splash-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .sp {
+    position: absolute;
+    border-radius: 50%;
+    animation: spFloat linear infinite;
+    opacity: 0;
+  }
+  @keyframes spFloat {
+    0%   { transform: translateY(110vh) scale(0.5); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.4; }
+    100% { transform: translateY(-60px) scale(1.2); opacity: 0; }
+  }
+
+  .splash-content {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: splashIn 1.2s cubic-bezier(0.34,1.2,0.64,1) both;
+  }
+  @keyframes splashIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .splash-heart {
+    font-size: clamp(4rem, 15vw, 8rem);
+    color: var(--deep);
+    line-height: 1;
+    animation: splashHeartbeat 1.6s ease-in-out infinite;
+    filter: drop-shadow(0 4px 20px rgba(196,96,122,0.4));
+    margin-bottom: 8px;
+  }
+  @keyframes splashHeartbeat {
+    0%,100% { transform: scale(1); }
+    15%     { transform: scale(1.18); }
+    30%     { transform: scale(1); }
+    45%     { transform: scale(1.1); }
+    60%     { transform: scale(1); }
+  }
+
+  .splash-date {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+    color: var(--mauve, #c2648a);
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease 0.5s forwards;
+  }
+
+  .splash-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 9vw, 5.5rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--deep);
+    line-height: 1.1;
+    text-shadow: 0 2px 30px rgba(196,96,122,0.2);
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .splash-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--soft, #d4809a);
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease 1s forwards;
+  }
+
+  .splash-line {
+    width: 80px;
+    height: 1.5px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+    margin: 12px auto 6px;
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease 1.2s forwards;
+  }
+
+  .splash-btn {
+    margin-top: 8px;
+    padding: 14px 44px;
+    background: linear-gradient(135deg, var(--rose), var(--deep));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(196,96,122,0.4);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease 1.6s forwards;
+  }
+  .splash-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 14px 40px rgba(196,96,122,0.55);
+  }
+
+  @keyframes splashFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ═══ SPLASH SCREEN ═══ -->
+<div id="splash">
+  <div class="splash-bg"></div>
+  <div class="splash-particles" id="splashParticles"></div>
+  <div class="splash-content">
+    <div class="splash-heart" id="splashHeart">♡</div>
+    <div class="splash-date">16 марта 2025</div>
+    <h1 class="splash-title">С Годовщиной,<br>моя Танюша</h1>
+    <p class="splash-sub">C любовью, Саша 💕</p>
+    <div class="splash-line"></div>
+    <button class="splash-btn" onclick="dismissSplash()">Войти ✨</button>
+  </div>
+</div>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- Background layers -->
+<div class="deco-mesh"></div>
+<div class="deco-dots"></div>
+
+<!-- CSS floating petals layer -->
+<div id="css-petals"></div>
+
+<!-- Corner SVG ornaments -->
+<svg class="deco-corner tl" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10,10 Q60,10 60,60 Q60,10 110,10" stroke="#e8749a" stroke-width="1.5" fill="none"/>
+  <circle cx="30" cy="30" r="18" stroke="#e8749a" stroke-width="1" fill="none"/>
+  <path d="M55,5 C55,5 60,20 55,35 C65,20 80,15 80,15 C80,15 65,25 60,40 C70,25 85,22 85,22" stroke="#e8749a" stroke-width="1.2" fill="none"/>
+  <circle cx="15" cy="60" r="8" stroke="#e8749a" stroke-width="1" fill="rgba(232,116,154,0.15)"/>
+  <path d="M5,90 Q30,70 50,90 Q30,110 5,90Z" stroke="#e8749a" stroke-width="1" fill="rgba(232,116,154,0.1)"/>
+  <!-- rose petals -->
+  <ellipse cx="80" cy="40" rx="12" ry="7" fill="rgba(242,167,195,0.4)" transform="rotate(-30 80 40)"/>
+  <ellipse cx="70" cy="55" rx="12" ry="7" fill="rgba(242,167,195,0.35)" transform="rotate(20 70 55)"/>
+  <ellipse cx="90" cy="55" rx="12" ry="7" fill="rgba(242,167,195,0.35)" transform="rotate(-60 90 55)"/>
+  <circle cx="80" cy="50" r="5" fill="rgba(232,116,154,0.4)"/>
+  <!-- small dots -->
+  <circle cx="100" cy="20" r="3" fill="rgba(232,116,154,0.3)"/>
+  <circle cx="120" cy="15" r="2" fill="rgba(242,167,195,0.4)"/>
+  <circle cx="140" cy="25" r="2.5" fill="rgba(232,116,154,0.25)"/>
+  <circle cx="20" cy="100" r="2.5" fill="rgba(232,116,154,0.3)"/>
+  <circle cx="10" cy="130" r="2" fill="rgba(242,167,195,0.35)"/>
+  <!-- vine lines -->
+  <path d="M0,80 C20,75 30,90 20,100 C35,85 50,95 40,110" stroke="#e8749a" stroke-width="0.8" fill="none" opacity="0.6"/>
+  <path d="M40,0 C45,25 30,35 40,50 C50,30 65,40 55,55" stroke="#e8749a" stroke-width="0.8" fill="none" opacity="0.6"/>
+</svg>
+
+<svg class="deco-corner tr" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10,10 Q60,10 60,60 Q60,10 110,10" stroke="#e8749a" stroke-width="1.5" fill="none"/>
+  <circle cx="30" cy="30" r="18" stroke="#e8749a" stroke-width="1" fill="none"/>
+  <ellipse cx="80" cy="40" rx="12" ry="7" fill="rgba(242,167,195,0.4)" transform="rotate(-30 80 40)"/>
+  <ellipse cx="70" cy="55" rx="12" ry="7" fill="rgba(242,167,195,0.35)" transform="rotate(20 70 55)"/>
+  <ellipse cx="90" cy="55" rx="12" ry="7" fill="rgba(242,167,195,0.35)" transform="rotate(-60 90 55)"/>
+  <circle cx="80" cy="50" r="5" fill="rgba(232,116,154,0.4)"/>
+  <circle cx="100" cy="20" r="3" fill="rgba(232,116,154,0.3)"/>
+  <circle cx="120" cy="15" r="2" fill="rgba(242,167,195,0.4)"/>
+  <path d="M0,80 C20,75 30,90 20,100 C35,85 50,95 40,110" stroke="#e8749a" stroke-width="0.8" fill="none" opacity="0.6"/>
+</svg>
+
+<svg class="deco-corner bl" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10,10 Q60,10 60,60 Q60,10 110,10" stroke="#e8749a" stroke-width="1.5" fill="none"/>
+  <circle cx="30" cy="30" r="18" stroke="#e8749a" stroke-width="1" fill="none"/>
+  <ellipse cx="80" cy="40" rx="12" ry="7" fill="rgba(242,167,195,0.4)" transform="rotate(-30 80 40)"/>
+  <ellipse cx="70" cy="55" rx="12" ry="7" fill="rgba(242,167,195,0.35)" transform="rotate(20 70 55)"/>
+  <circle cx="80" cy="50" r="5" fill="rgba(232,116,154,0.4)"/>
+  <circle cx="100" cy="20" r="3" fill="rgba(232,116,154,0.3)"/>
+</svg>
+
+<svg class="deco-corner br" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10,10 Q60,10 60,60 Q60,10 110,10" stroke="#e8749a" stroke-width="1.5" fill="none"/>
+  <circle cx="30" cy="30" r="18" stroke="#e8749a" stroke-width="1" fill="none"/>
+  <ellipse cx="80" cy="40" rx="12" ry="7" fill="rgba(242,167,195,0.4)" transform="rotate(-30 80 40)"/>
+  <ellipse cx="70" cy="55" rx="12" ry="7" fill="rgba(242,167,195,0.35)" transform="rotate(20 70 55)"/>
+  <circle cx="80" cy="50" r="5" fill="rgba(232,116,154,0.4)"/>
+  <circle cx="100" cy="20" r="3" fill="rgba(232,116,154,0.3)"/>
+</svg>
+
+<button class="back-btn" id="backBtn" onclick="goHome()">← На главную</button>
+
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <!-- Decorative waves -->
+  <svg class="page-wave top" viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:120px;">
+    <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,0 L0,0Z" fill="url(#wg1)"/>
+    <defs><linearGradient id="wg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fbc8dc"/><stop offset="50%" stop-color="#f2a7c3"/><stop offset="100%" stop-color="#fbc8dc"/></linearGradient></defs>
+  </svg>
+  <svg class="page-wave bottom" viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:120px;">
+    <path d="M0,60 C240,0 480,120 720,60 C960,0 1200,120 1440,60 L1440,120 L0,120Z" fill="url(#wg2)"/>
+    <defs><linearGradient id="wg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fde8f0"/><stop offset="50%" stop-color="#fbc8dc"/><stop offset="100%" stop-color="#fde8f0"/></linearGradient></defs>
+  </svg>
+
+  <!-- Big decorative background roses -->
+  <div class="bg-rose" style="top:8%;left:4%;animation-duration:40s;">🌹</div>
+  <div class="bg-rose" style="top:75%;left:7%;animation-duration:55s;font-size:2rem;">🌸</div>
+  <div class="bg-rose" style="top:15%;right:5%;animation-duration:48s;font-size:3rem;">🌷</div>
+  <div class="bg-rose" style="bottom:10%;right:6%;animation-duration:35s;font-size:2rem;">🌺</div>
+  <div class="bg-rose" style="top:50%;left:50%;animation-duration:70s;font-size:4rem;opacity:0.04;">❀</div>
+
+  <div class="hero-card">
+    <div class="date-ribbon">16 марта 💕</div>
+    <h1 class="main-title">С Годовщиной,<br>моя любовь</h1>
+    <p class="subtitle">Каждый день с тобой - это маленькое чудо</p>
+
+    <!-- Наше фото — вставь путь в src -->
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="" alt="Наше фото" id="heroPhoto" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <div class="ornament-line">✦ ♡ ✦</div>
+    <p class="love-poem">
+      Ты мой рассвет, моя весна,<br>
+      Ты тихий свет в тени ночной.<br>
+      Любовь моя к тебе бесконечна,<br>
+      Как время, что идет с тобой.
+    </p>
+    <div class="nav-buttons">
+      <button class="btn btn-primary" onclick="goTo('page2')">📸 Наши фото</button>
+      <button class="btn btn-outline" onclick="goTo('page4')">🗓️ Наш календарь</button>
+      <button class="btn btn-outline" onclick="goTo('page3')">💌 Наша история</button>
+      <button class="btn btn-outline" onclick="goTo('page5')">💗 Признание</button>
+      <button class="btn btn-outline" onclick="goTo('page6')">🗺️ Наши места</button>
+      <button class="btn btn-outline" onclick="goTo('page7')">💛 Почему я люблю тебя</button>
+      <button class="btn btn-outline" onclick="goTo('page8')">🔮 Письмо в будущее</button>
+      <button class="btn btn-outline" onclick="goTo('page9')">🎵 Наша песня</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,50 C360,100 720,0 1080,50 C1260,75 1380,30 1440,50 L1440,0 L0,0Z" fill="rgba(251,200,220,0.35)"/>
+  </svg>
+  <div class="page-header">
+    <h2 class="page-title">Наши моменты</h2>
+    <p class="page-sub">Воспоминания, которые греют сердце</p>
+  </div>
+  <p class="photos-intro">Здесь хранятся наши самые дорогие мгновения✨</p>
+  <div class="photo-grid" id="photoGrid"></div>
+  <button class="btn btn-primary" onclick="goTo('page3')" style="margin-bottom:40px;">💌 Читать нашу историю →</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,30 C200,80 500,10 800,50 C1100,90 1300,20 1440,40 L1440,0 L0,0Z" fill="rgba(242,167,195,0.3)"/>
+  </svg>
+  <div class="page-header">
+    <h2 class="page-title">Наша история</h2>
+    <p class="page-sub">С первого взгляда и до сегодняшнего дня</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <img class="tl-photo" src="images/army.jpg" alt="" onerror="this.style.display='none'"> <!-- src: фото первой встречи -->
+        <div class="timeline-year">Начало ✨</div>
+        <div class="timeline-title">Наша первая встреча</div>
+        <div class="timeline-text">Именно тогда я впервые увидел тебя. Что-то внутри подсказало - это моя девочка. Я никогда не ощущал такого. Мне хотелось летать и тонуть в твоих глазах. Это самый лучший день в моей жизни! </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <img class="tl-photo" src="images/hand.jpg" alt="" onerror="this.style.display='none'"> <!-- src: фото первого свидания -->
+        <div class="timeline-year">Первая поездка 🌷</div>
+        <div class="timeline-title">Тот самый вечер</div>
+        <div class="timeline-text">Мы провели столько времени вместе, и я понял, что хочу знать тебя вечно. Вспоминаю, как приехал к тебе. Покушал самую вкусную пюрешку, котлеты и цезарь в моей жизни. Как мы поехали кататься, а ты в это время смотрела на меня, не отрывая взгляд. Русский остров... Токио... Отель. Как курили на балконе, смотря на ночной город. Ты просила плотнее закрыть дверь, так как тебе было холодно. Я помню тебя, под одеялом. Такую милую... Хочу вернуться, хочу чтобы так было всегда...</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <img class="tl-photo" src="images/sea.jpg" alt="" onerror="this.style.display='none'"> <!-- src: фото признания -->
+        <div class="timeline-year">Признание 💌</div>
+        <div class="timeline-title">Я тебя люблю!</div>
+        <div class="timeline-text">Три слова, которые изменили всё. Помню, как сердце билось, когда я произнёс их впервые. Как меня трясло, как я стеснялся. Для меня это не просто слова. Для меня это раскрытие души. Я доверился только тебе. Я люблю тебя и буду любить вечно, дорогая моя!</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <img class="tl-photo" src="images/sea2.jpg" alt="" onerror="this.style.display='none'"> <!-- src: фото путешествия -->
+        <div class="timeline-year">Поездка на море 🌅</div>
+        <div class="timeline-title">Наше первое приключение</div>
+        <div class="timeline-text">Каждый новый горизонт становился нашим общим воспоминанием. Тот первый раз, когда мы поехали на море. Это восторг. Мне нравилось спать вместе в машине, гулять по песку, купаться с тобой, когда ты боялась глубины, а я держал тебя на руках. И пусть остальной мир подождет. Мы вместе, мы любим, мы счастливы. Загоревшие, усталые. А те ночи... Когда мы вайбово курили, говорили обо всем на свете. Наша история только начиналась...</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <img class="tl-photo" src="images/family.jpg" alt="" onerror="this.style.display='none'"> <!-- src: фото Софии -->
+        <div class="timeline-year">26 мая 2024 🌸</div>
+        <div class="timeline-title">Родилась наша Сонечка</div>
+        <div class="timeline-text">В этот день наш мир стал в три раза ярче. София появилась на свет, и мы поняли, что такое настоящее чудо. Ты стала невероятной мамой, и я люблю вас обеих бесконечно.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <img class="tl-photo" src="images/us2.jpg" alt="" onerror="this.style.display='none'"> <!-- src: фото годовщины -->
+        <div class="timeline-year">Сегодня 💕</div>
+        <div class="timeline-title">16 марта - наша годовщина</div>
+        <div class="timeline-text">И сегодня я люблю тебя ещё сильнее, чем вчера. Ты моя история, моя радость, мой дом. Да, бывают трудности, но мы справимся со всем ВМЕСТЕ! С праздником, моя любовь!</div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; padding-bottom: 60px;">
+    <div style="font-size: 3rem; margin-bottom: 16px; animation: heartBeat 1.5s infinite;">♡</div>
+    <div style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: var(--deep);">Ты моя навсегда</div>
+    <div style="font-style: italic; color: var(--soft); margin-top: 8px; font-size: 1rem;">С бесконечной любовью, всегда твой муж Саша💕</div>
+    <button class="btn btn-primary" onclick="goHome()" style="margin-top: 30px;">🏠 На главную</button>
+  </div>
+</div>
+
+<!-- PAGE 4: CALENDAR -->
+<div class="page" id="page4">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,40 C300,100 600,0 900,50 C1150,90 1320,20 1440,45 L1440,0 L0,0Z" fill="rgba(251,200,220,0.3)"/>
+  </svg>
+  <div class="page-header">
+    <h2 class="page-title">Наш календарь</h2>
+    <p class="page-sub">С того самого дня, когда мы стали семьей</p>
+  </div>
+
+  <!-- Together counter -->
+  <div class="together-counter" id="togetherCounter"></div>
+
+  <!-- Calendar -->
+  <div class="cal-wrap">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="calPrev()">‹</button>
+      <div class="cal-month-title" id="calMonthTitle"></div>
+      <button class="cal-nav-btn" onclick="calNext()">›</button>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+
+  <div style="text-align:center;padding-bottom:50px;">
+    <button class="btn btn-outline" onclick="calGoToWedding()" style="margin-top:4px;">💍 К дате свадьбы</button>
+    <br>
+    <button class="btn btn-primary" onclick="goHome()" style="margin-top:16px;">🏠 На главную</button>
+  </div>
+</div>
+
+<!-- PAGE 5: CONFESSION -->
+<div class="page" id="page5">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,50 C250,100 500,0 750,50 C1000,100 1250,10 1440,40 L1440,0 L0,0Z" fill="rgba(242,167,195,0.28)"/>
+  </svg>
+
+  <div class="page-header">
+    <h2 class="page-title">Признание</h2>
+    <p class="page-sub">Слова, которые ты должна знать</p>
+  </div>
+
+  <div class="confession-wrap">
+
+    <!-- Envelope seal decoration -->
+    <div class="confession-seal">💌</div>
+
+    <div class="confession-paper">
+
+      <div class="confession-to">Моей любимой жене,</div>
+
+      <p class="confession-text">
+        Есть вещи, которые сложно сказать вслух. Не потому что их нет, а потому что сложно выразить словами. Это письмо - попытка сказать тебе то, что живёт внутри меня.
+      </p>
+
+      <p class="confession-text">
+        Я влюблён в то, как ты смеёшься. В твои глаза. В то, как ты заботишься о нашей доченьке - с такой нежностью и силой одновременно. В то, как ты умеешь зажигать меня.
+      </p>
+
+      <p class="confession-text">
+        Ты лучшее, что случилось со мной. Не потому что так надо говорить, а потому что это правда, о которой я хочу говорить каждое утро, когда просыпаюсь рядом с тобой.
+      </p>
+
+      <p class="confession-text">
+        За этот год мы прошли через многое. И в каждом моменте - радостном или сложном я был благодарен, что иду именно с тобой. Ты моя муза, моя радость, моя семья. Было много сложного в наших отношениях, но мы будем работать, мы справимся ВМЕСТЕ. Я буду стараться для нас!
+      </p>
+
+      <p class="confession-text">
+        Я обещаю любить тебя так же сильно завтра. И послезавтра. И через много лет, когда мы будем смотреть на взрослую Сонечку и вспоминать этот день. С тобой я по-настоящему счастлив. Посмотри на меня с другой стороны. Посмотри какой я заботливый, чуткий, нежный. Я рядом и никогда не оставлю тебя, Танюша.
+      </p>
+
+      <div class="confession-divider">✦ ♡ ✦</div>
+
+      <div class="confession-sign">
+        Навсегда твой,<br>
+        <span class="confession-name"> Муж Саша 💕</span>
+      </div>
+
+    </div>
+
+    <!-- Floating petals decoration -->
+    <div class="confession-petals">
+      <span style="left:5%;animation-delay:0s;">🌸</span>
+      <span style="left:20%;animation-delay:1.2s;">🌷</span>
+      <span style="left:75%;animation-delay:0.6s;">🌹</span>
+      <span style="left:90%;animation-delay:1.8s;">💮</span>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;padding-bottom:50px;margin-top:10px;">
+    <button class="btn btn-primary" onclick="goHome()">🏠 На главную</button>
+  </div>
+</div>
+
+<!-- PAGE 6: MAP -->
+<div class="page" id="page6">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,35 C280,95 560,5 840,55 C1120,95 1320,15 1440,40 L1440,0 L0,0Z" fill="rgba(242,167,195,0.28)"/>
+  </svg>
+  <div class="page-header">
+    <h2 class="page-title">Наши места</h2>
+    <p class="page-sub">Точки на карте, где живёт наша история</p>
+  </div>
+
+  <div class="map-legend" id="mapLegend"></div>
+  <div id="loveMap" style="width:calc(100% - 32px);max-width:700px;height:420px;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(196,96,122,0.2);border:2px solid rgba(242,167,195,0.35);margin:0 auto 24px;"></div>
+
+  <div style="text-align:center;padding-bottom:50px;">
+    <button class="btn btn-primary" onclick="goHome()">🏠 На главную</button>
+  </div>
+</div>
+
+<!-- PAGE 7: REASONS -->
+<div class="page" id="page7">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,45 C200,95 450,5 700,50 C950,95 1200,10 1440,40 L1440,0 L0,0Z" fill="rgba(242,167,195,0.28)"/>
+  </svg>
+  <div class="page-header">
+    <h2 class="page-title">Почему я люблю тебя</h2>
+    <p class="page-sub">Переверни каждую карточку 💕</p>
+  </div>
+
+  <div class="reasons-grid" id="reasonsGrid"></div>
+
+  <div style="text-align:center;padding-bottom:50px;">
+    <button class="btn btn-primary" onclick="goHome()">🏠 На главную</button>
+  </div>
+</div>
+
+<!-- PAGE 8: FUTURE LETTER -->
+<div class="page" id="page8">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,55 C180,5 400,95 650,45 C900,5 1200,85 1440,35 L1440,0 L0,0Z" fill="rgba(242,167,195,0.25)"/>
+  </svg>
+  <div class="page-header">
+    <h2 class="page-title">Письмо в будущее</h2>
+    <p class="page-sub">Нам в 2029 году 🔮</p>
+  </div>
+
+  <div class="future-wrap">
+
+    <!-- Countdown -->
+    <div class="future-countdown" id="futureCountdown"></div>
+
+    <!-- Locked state — shown before 2029 -->
+    <div class="future-locked" id="futureLocked">
+      <div class="future-lock-icon">🔒</div>
+      <div class="future-lock-text">Это письмо откроется<br><span>16 марта 2029 года</span></div>
+      <div class="future-lock-hint">Но мы можем заглянуть чуть раньше... 💕</div>
+      <button class="btn btn-outline" style="margin-top:16px;" onclick="unlockLetter()">Открыть письмо 💌</button>
+    </div>
+
+    <!-- Letter content -->
+    <div class="future-paper" id="futurePaper">
+      <div class="future-to">Нам через 5 лет,<br>16 марта 2029 года</div>
+
+      <p class="future-text">
+        Привет, это мы из 2024-го. Мы только что поженились, у нас крошечная Сонечка, и впереди целая жизнь, которую мы ещё не знаем, но очень ждём.
+      </p>
+      <p class="future-text">
+        Если вы читаете это вместе - это значит, мы справились. Значит, всё было правильно. Значит, любовь оказалась сильнее всего, сильнее всех неудач и трудностей.
+      </p>
+      <p class="future-text">
+        Мы хотим спросить вас кое о чем. Вы ещё держитесь за руки, когда гуляете или идете куда-то? Целуетесь нежно? Вы смеётесь вместе так же, как сейчас? Вы помните тот первый взгляд, ту первую встречу?
+      </p>
+      <p class="future-text">
+        Мы надеемся, что вы не забыли: любовь - это не только праздники и цветы. Это выбор, который нужно делать снова и снова - каждое утро, каждый трудный день, каждый обычный вечер дома.
+      </p>
+      <p class="future-text">
+        Обнимите Сонечку. Она уже большая? Это невозможно представить. Скажите ей, что любите её просто так, без повода.
+      </p>
+      <p class="future-text">
+        И ещё одно. Посмотрите друг на друга прямо сейчас. Вот так. Это всё, что нужно. Вы дома, вы семья.
+      </p>
+
+      <div class="future-divider">✦ ♡ ✦</div>
+      <div class="future-sign">
+        С любовью из прошлого,<br>
+        <span class="future-sign-name">Саша и Таня из 2024 💕</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;padding-bottom:50px;margin-top:16px;">
+    <button class="btn btn-primary" onclick="goHome()">🏠 На главную</button>
+  </div>
+</div>
+
+<!-- PAGE 9: OUR SONG -->
+<div class="page" id="page9">
+  <svg class="page-wave top" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:100px;">
+    <path d="M0,40 C300,100 600,0 900,60 C1150,100 1320,20 1440,45 L1440,0 L0,0Z" fill="rgba(242,167,195,0.28)"/>
+  </svg>
+  <div class="page-header">
+    <h2 class="page-title">Наша песня</h2>
+    <p class="page-sub">MONA х Баста — Ты так мне необходим</p>
+  </div>
+
+  <div class="song-wrap">
+    <!-- Vinyl decoration -->
+    <div class="vinyl-wrap">
+      <div class="vinyl" id="vinyl">
+        <div class="vinyl-center">💕</div>
+      </div>
+    </div>
+
+    <!-- Наше фото — вставь путь в src -->
+    <div class="song-photo-wrap">
+      <img class="song-photo" src="images/more.jpg" alt="Наше фото" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- SoundCloud embed -->
+    <div class="song-player">
+      <iframe
+        id="scPlayer"
+        width="100%"
+        height="166"
+        scrolling="no"
+        frameborder="no"
+        allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/secondscenes/mona-kh-basta-ty-tak-mne-neobkhodim&color=%23f4a7b9&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+      </iframe>
+    </div>
+
+    <!-- Quote -->
+    <div class="song-quote">
+      <div class="song-quote-mark">❝</div>
+      <p class="song-quote-text">Ты так мне необходим, ты нужен мне как вода. Как зимам нужна метель, как жителям города...</p>
+      <div class="song-quote-sign">Наша песня 🌸</div>
+    </div>
+
+    <!-- Floating musical notes -->
+    <div class="music-notes" id="musicNotes"></div>
+  </div>
+
+  <div style="text-align:center;padding-bottom:50px;margin-top:8px;">
+    <button class="btn btn-primary" onclick="goHome()">🏠 На главную</button>
+  </div>
+</div>
+
+<!-- PHOTO MODAL -->
+<div class="photo-modal-overlay" id="photoModal" onclick="closeModalOnOverlay(event)">
+  <div class="photo-modal" id="photoModalInner">
+    <button class="modal-close" onclick="closeModal()" title="Закрыть">✕</button>
+    <div class="modal-image-wrap" id="modalImageWrap">
+      <div class="modal-image-placeholder" id="modalPlaceholder">🌸</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag" id="modalTag">📸 Воспоминание</div>
+      <h3 class="modal-title" id="modalTitle">Название</h3>
+      <div class="modal-divider"><span class="modal-divider-heart">💕</span></div>
+      <p class="modal-description" id="modalDescription">Описание этого особенного момента...</p>
+      <div class="modal-wish-card">
+        <div class="modal-wish-label">Пожелание 💌</div>
+        <div class="modal-wish-text" id="modalWish">Слова любви...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── SPLASH SCREEN ───────────────────────────────────────────
+(function() {
+  const splash = document.getElementById('splash');
+  const container = document.getElementById('splashParticles');
+
+  // Spawn glowing particles
+  const colors = ['rgba(244,167,185,0.8)','rgba(255,182,213,0.7)','rgba(255,210,228,0.6)','rgba(255,255,255,0.9)','rgba(196,96,122,0.5)'];
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'sp';
+    const size = Math.random() * 10 + 3;
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      box-shadow: 0 0 ${size*2}px ${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*8+5}s;
+      animation-delay:${Math.random()*4}s;
+    `;
+    container.appendChild(p);
+  }
+
+  function dismiss() {
+    splash.classList.add('hide');
+    setTimeout(() => { splash.style.display = 'none'; }, 950);
+  }
+
+  // Only dismiss on button click — exposed as global
+  window.dismissSplash = dismiss;
+})();
+
+// ─── PHOTO MODAL DATA ────────────────────────────────────────
+const photoData = [
+  {
+    src: 'images/army.jpg', // ← вставь путь к фото, например: 'photos/photo1.jpg'
+    emoji: '🌸',
+    tag: '✨ Армия',
+    title: 'Скучаю по тебе в армии',
+    desc: '"Те самые дни, когда всё началось... Я помню каждую деталь — твою улыбку, твои глаза, ощущение чего-то совершенно нового и прекрасного.',
+    wish: 'Ты стала самым лучшим началом моей истории. Каждый раз, вспоминая этот день, я улыбаюсь и благодарю судьбу за такой подарок.'
+  },
+  {
+    src: 'images/sea2.jpg', // ← вставь путь к фото
+    emoji: '🌷',
+    tag: '✈️ Путешествие',
+    title: 'Наша первая поездка на море',
+    desc: 'Мы открывали новые места, но самым прекрасным открытием всегда оставались мы сами - наш смех, наши разговоры, наша радость, наша влюбленность',
+    wish: 'Хочу объездить с тобой весь мир. Ведь любой уголок земли становится раем, когда ты рядом.'
+  },
+  {
+    src: 'images/gangnam.jpg',
+    emoji: '💕',
+    tag: '🌙 Особый вечер',
+    title: 'Наш особый вечер в GANGNAM',
+    desc: 'Некоторые вечера остаются в сердце навсегда. Этот один из них. Время словно замерло, и были только ты и я.',
+    wish: 'Хочу ещё тысячу таких вечеров с тобой. Тихих, нежных, наших...'
+  },
+  {
+    src: 'images/tit.jpg',
+    emoji: '🥂',
+    tag: '🎉 Праздник',
+    title: 'Наш первый Новый Год вместе',
+    desc: 'Лучший праздник - это просто быть рядом с тобой, дорогая. Никуда не спешить, наслаждаться каждым мгновением и знать, что ты моя... Это мой самый лучший Новый Год!',
+    wish: 'Пусть каждый день с тобой будет нашим маленьким праздником. Ты моё ежедневное счастье!'
+  },
+  {
+    src: 'images/horses.jpg',
+    emoji: '🌅',
+    tag: '🌊 Природа',
+    title: 'Прогулка на лошадках',
+    desc: 'Мы гуляли и смотрели друг на друга. Мир казался бесконечно красивым - именно потому, что ты была рядом. Я шел за тобой и смотрел на тебя в седле. Ты замечательно ездишь на лошади, моя девочка.',
+    wish: 'Хочу встречать с тобой каждый рассвет и провожать каждый закат. Вечно и всегда.'
+  },
+  {
+    src: 'images/magic.jpg',
+    emoji: '✨',
+    tag: '💖 Фотосессия',
+    title: 'Наша первая фотосессия',
+    desc: 'Есть моменты, которые невозможно описать словами. Они живут внутри... тёплые, светлые, настоящие. Этот один из таких.',
+    wish: 'Ты делаешь мою жизнь по-настоящему живой. Спасибо за каждый такой момент, дорогая!'
+  },
+  {
+    src: 'images/forest.jpg',
+    emoji: '🌍',
+    tag: '🗺 Поездка',
+    title: 'Спонтанная поездка за город',
+    desc: 'Любая поездка с тобой становится ярче, когда рядом ты. Твой смех и сияющие глазки - лучшее, что может быть в этот момент.',
+    wish: 'Пусть наша жизнь будет чаще наполнена такими моментами. Я хочу всегда быть рядом с тобой, моя любимая.'
+  },
+  {
+    src: 'images/hrizantem.jpg',
+    emoji: '💐',
+    tag: '🌹 Цветы',
+    title: 'Цветы для тебя',
+    desc: 'Ты заслуживаешь самых красивых цветов каждый день. Но ни один букет не сравнится с тобой, мой самый красивый и нежный цветочек.',
+    wish: 'Хочу дарить тебе цветы просто и без повода. Потому что ты мой самый любимый человечек.'
+  },
+  {
+    src: 'images/coffee.jpg',
+    emoji: '☕',
+    tag: '🌤️ Классные места',
+    title: 'Кофейня',
+    desc: 'Знаешь, даже самый обычный сырный латте становится вкуснее, когда мы вместе. Чудесный момент. Красивые виды... И рядом ты, мой ангел.',
+    wish: 'Хочу всегда угощать тебя твоим любимым кофе, поднимать тебе настроение даже в самые грустные и серые деньки.'
+  },
+  {
+    src: 'images/japanstore.jpg',
+    emoji: '⛩️',
+    tag: '👘️ Японский вайб',
+    title: 'Японский магазинчик',
+    desc: 'Вайб Японии я полностью полюбил с тобой. Ты человек с богатой душой и сердцем. Спасибо, что открываешь для меня что-то новое. Люблю тебя!',
+    wish: 'Хочу посетить с тобой Японию и Корею. Насладиться вместе с тобой прохладным утром, теплым вечером. Выпить матчу, поговорить, или просто помолчать в обнимку.'
+  },
+  {
+    src: 'images/familykiss.jpg',
+    emoji: '❤️',
+    tag: '❤️ Семья',
+    title: 'Семейные посиделки',
+    desc: 'Самый лучший отдых для меня - когда мы семьей выбираемся куда-то. Хочу, чтобы ты знала и верила, что я живу ради Вас с Сонечкой. Вы мое все.',
+    wish: 'Хочу чтобы у нас всегда все было гармонично. Семья, отношения - для меня самое важное в жизни. Во многих моментах я был не прав и неидеален. Но я ради тебя готов на все.'
+  },
+  {
+    src: 'images/us2.jpg',
+    emoji: '❤️',
+    tag: '♾️ Навсегда',
+    title: 'Навсегда вместе',
+    desc: 'Это не просто слова. Это обещание. Это выбор, который я делаю каждый день. Быть рядом, любить, беречь тебя.',
+    wish: 'Ты моя вечность. Сегодня, завтра и всегда. С Годовщиной, моя любовь 💕'
+  }
+];
+
+// ─── RENDER PHOTO CARDS ───────────────────────────────────────
+(function() {
+  const grid = document.getElementById('photoGrid');
+  if (!grid) return;
+  photoData.forEach((d, i) => {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.onclick = () => openModal(i);
+    card.innerHTML = `
+      <div class="photo-placeholder">
+        ${d.src ? `<img src="${d.src}" style="width:100%;height:100%;object-fit:cover;border-radius:14px;display:block;">` : d.emoji}
+      </div>
+      <div class="photo-label">${d.title}</div>`;
+    grid.appendChild(card);
+  });
+})();
+
+// ─── MODAL LOGIC ─────────────────────────────────────────────
+function openModal(index) {
+  const data = photoData[index];
+
+  document.getElementById('modalTag').textContent = data.tag;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalDescription').textContent = data.desc;
+  document.getElementById('modalWish').textContent = data.wish;
+
+  const imgWrap = document.getElementById('modalImageWrap');
+  if (data.src) {
+    imgWrap.innerHTML = `<img src="${data.src}" alt="${data.title}">`;
+  } else {
+    imgWrap.innerHTML = `<div class="modal-image-placeholder">${data.emoji}</div>`;
+  }
+
+  document.getElementById('photoModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('photoModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('photoModal')) closeModal();
+}
+
+// Keyboard ESC close
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function goTo(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  document.getElementById('backBtn').classList.add('visible');
+  window.scrollTo(0, 0);
+}
+function goHome() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page1').classList.add('active');
+  document.getElementById('backBtn').classList.remove('visible');
+  window.scrollTo(0, 0);
+}
+
+// Particles
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 3.5 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = -Math.random() * 0.8 - 0.2;
+    this.life = 0;
+    this.maxLife = Math.random() * 200 + 100;
+    const colors = [[255,182,213],[255,210,228],[242,167,195],[255,255,255],[255,200,220]];
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.twinkleSpeed = Math.random() * 0.05 + 0.02;
+    this.twinkleOffset = Math.random() * Math.PI * 2;
+    this.isStar = Math.random() < 0.3;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.life++;
+    if (this.life > this.maxLife || this.y < -20) this.reset();
+  }
+  draw() {
+    const twinkle = 0.4 + 0.6 * Math.sin(this.life * this.twinkleSpeed + this.twinkleOffset);
+    const [r,g,b] = this.color;
+    ctx.save();
+    ctx.globalAlpha = twinkle * 0.75;
+    if (this.isStar) {
+      ctx.fillStyle = `rgb(${r},${g},${b})`;
+      ctx.shadowColor = `rgba(${r},${g},${b},0.9)`;
+      ctx.shadowBlur = 14;
+      ctx.translate(this.x, this.y);
+      ctx.beginPath();
+      for (let i = 0; i < 4; i++) {
+        const a = (i/4)*Math.PI*2;
+        ctx.lineTo(Math.cos(a)*this.size*2, Math.sin(a)*this.size*2);
+        ctx.lineTo(Math.cos(a+Math.PI/4)*this.size*0.5, Math.sin(a+Math.PI/4)*this.size*0.5);
+      }
+      ctx.closePath(); ctx.fill();
+    } else {
+      const g2 = ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.size*2.5);
+      g2.addColorStop(0,`rgba(${r},${g},${b},1)`);
+      g2.addColorStop(1,`rgba(${r},${g},${b},0)`);
+      ctx.fillStyle = g2;
+      ctx.shadowColor = `rgba(${r},${g},${b},0.7)`;
+      ctx.shadowBlur = 10;
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.size*2.5,0,Math.PI*2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+}
+
+for (let i = 0; i < 90; i++) {
+  const p = new Particle();
+  p.life = Math.floor(Math.random() * p.maxLife);
+  particles.push(p);
+}
+
+function animate() {
+  // replaced by animateFull below
+}
+// animate() — disabled, using animateFull instead
+
+canvas.style.pointerEvents = 'none';
+
+// ─── EXTRA PARTICLE LAYERS ────────────────────────────────────
+// Large slow drifting orbs
+class GlowOrb {
+  constructor() { this.reset(true); }
+  reset(initial = false) {
+    this.x = Math.random() * canvas.width;
+    this.y = initial ? Math.random() * canvas.height : canvas.height + 20;
+    this.r = Math.random() * 60 + 30;
+    this.vx = (Math.random() - 0.5) * 0.15;
+    this.vy = -(Math.random() * 0.12 + 0.04);
+    this.alpha = Math.random() * 0.08 + 0.03;
+    this.pulse = Math.random() * Math.PI * 2;
+    this.pulseSpeed = Math.random() * 0.008 + 0.004;
+    const palettes = [
+      [255, 182, 213], [255, 210, 228], [255, 160, 200], [252, 228, 236], [255, 240, 248]
+    ];
+    this.color = palettes[Math.floor(Math.random() * palettes.length)];
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.pulse += this.pulseSpeed;
+    if (this.y < -this.r * 2) this.reset();
+  }
+  draw() {
+    const [r, g, b] = this.color;
+    const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
+    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+    grad.addColorStop(0, `rgba(${r},${g},${b},${a})`);
+    grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+}
+
+// Tiny fast sparkles
+class Sparkle {
+  constructor() { this.reset(true); }
+  reset(initial = false) {
+    this.x = Math.random() * canvas.width;
+    this.y = initial ? Math.random() * canvas.height : canvas.height + 5;
+    this.size = Math.random() * 1.8 + 0.4;
+    this.vx = (Math.random() - 0.5) * 0.8;
+    this.vy = -(Math.random() * 1.2 + 0.4);
+    this.life = 0;
+    this.maxLife = Math.random() * 120 + 60;
+    this.twinkle = Math.random() * Math.PI * 2;
+    this.twinkleSpeed = Math.random() * 0.15 + 0.08;
+    const cols = [[255,255,255],[255,230,240],[255,210,230],[245,180,210]];
+    this.color = cols[Math.floor(Math.random() * cols.length)];
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.twinkle += this.twinkleSpeed;
+    this.life++;
+    if (this.life > this.maxLife || this.y < -10) this.reset();
+  }
+  draw() {
+    const [r,g,b] = this.color;
+    const fade = Math.min(1, (this.maxLife - this.life) / 30) * Math.min(1, this.life / 20);
+    const tw = 0.4 + 0.6 * Math.sin(this.twinkle);
+    ctx.save();
+    ctx.globalAlpha = fade * tw * 0.9;
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = `rgba(${r},${g},${b},0.8)`;
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+// Heart particles that float up
+class HeartParticle {
+  constructor() { this.reset(true); }
+  reset(initial = false) {
+    this.x = Math.random() * canvas.width;
+    this.y = initial ? Math.random() * canvas.height : canvas.height + 20;
+    this.size = Math.random() * 8 + 4;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = -(Math.random() * 0.5 + 0.15);
+    this.life = 0;
+    this.maxLife = Math.random() * 300 + 200;
+    this.rotation = Math.random() * Math.PI * 2;
+    this.rotSpeed = (Math.random() - 0.5) * 0.02;
+    this.alpha = Math.random() * 0.25 + 0.05;
+  }
+  update() {
+    this.x += this.vx + Math.sin(this.life * 0.02) * 0.3;
+    this.y += this.vy;
+    this.rotation += this.rotSpeed;
+    this.life++;
+    if (this.life > this.maxLife || this.y < -30) this.reset();
+  }
+  draw() {
+    const fade = Math.min(1, (this.maxLife - this.life) / 60) * Math.min(1, this.life / 40);
+    ctx.save();
+    ctx.globalAlpha = fade * this.alpha;
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
+    ctx.scale(this.size / 10, this.size / 10);
+    ctx.beginPath();
+    ctx.moveTo(0, -3);
+    ctx.bezierCurveTo(5, -8, 10, -3, 0, 5);
+    ctx.bezierCurveTo(-10, -3, -5, -8, 0, -3);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(255,160,200,1)`;
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+// Initialise all layers
+const orbs = Array.from({length: 18}, () => new GlowOrb());
+const sparkles = Array.from({length: 160}, () => new Sparkle());
+const hearts = Array.from({length: 22}, () => new HeartParticle());
+
+// Boost original particles count
+for (let i = particles.length; i < 200; i++) {
+  const p = new Particle();
+  p.life = Math.floor(Math.random() * p.maxLife);
+  particles.push(p);
+}
+
+// Override animate to include all layers
+function animateFull() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  orbs.forEach(o => { o.update(); o.draw(); });
+  particles.forEach(p => { p.update(); p.draw(); });
+  sparkles.forEach(s => { s.update(); s.draw(); });
+  hearts.forEach(h => { h.update(); h.draw(); });
+  requestAnimationFrame(animateFull);
+}
+animateFull();
+
+// ─── CSS FLOATING PETALS ─────────────────────────────────────
+const petalEmoji = ['🌸','🌺','🌷','💮','🌹','✿','❀','💐'];
+const petalContainer = document.getElementById('css-petals');
+function spawnCssPetal() {
+  const el = document.createElement('div');
+  el.className = 'css-petal';
+  el.textContent = petalEmoji[Math.floor(Math.random() * petalEmoji.length)];
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.fontSize = (Math.random() * 1.2 + 0.7) + 'rem';
+  const dur = Math.random() * 12 + 10;
+  el.style.animationDuration = dur + 's';
+  el.style.animationDelay = (Math.random() * 4) + 's';
+  el.style.filter = `hue-rotate(${Math.random()*40-20}deg)`;
+  petalContainer.appendChild(el);
+  setTimeout(() => el.remove(), (dur + 5) * 1000);
+}
+// Spawn initial batch
+for (let i = 0; i < 14; i++) setTimeout(spawnCssPetal, i * 600);
+setInterval(spawnCssPetal, 2200);
+
+document.addEventListener('click', e => {
+  for (let i = 0; i < 6; i++) {
+    const p = new Particle();
+    p.x = e.clientX; p.y = e.clientY;
+    p.speedX = (Math.random()-0.5)*3;
+    p.speedY = (Math.random()-0.5)*3-1;
+    p.size = Math.random()*4+2;
+    particles.push(p);
+  }
+  if (particles.length > 160) particles.splice(0,6);
+});
+
+// ─── CALENDAR ────────────────────────────────────────────────
+const WEDDING = new Date(2024, 2, 16); // 16 марта 2024
+const MONTHS_RU = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+const DOWS = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+let calYear, calMonth;
+
+function calInit() {
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+  renderCounter();
+  renderCalendar();
+}
+
+function renderCounter() {
+  const now = new Date();
+  const diff = now - WEDDING;
+  const totalDays = Math.floor(diff / 86400000);
+
+  // Accurate years/months/days
+  let y = now.getFullYear() - WEDDING.getFullYear();
+  let m = now.getMonth()   - WEDDING.getMonth();
+  let d = now.getDate()    - WEDDING.getDate();
+  if (d < 0) { m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if (m < 0) { y--; m += 12; }
+
+  const totalHours = Math.floor(diff / 3600000);
+  const hours = String(totalHours % 24).padStart(2,'0');
+  const mins  = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+  const secs  = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+
+  const phrases = [
+    'Каждый день с тобой - лучший день моей жизни 💕',
+    'Рядом с тобой время летит как один миг ✨',
+    'Ты - моё самое любимое приключение 🌸',
+    'С каждым днём люблю тебя всё сильнее 💖',
+    'Быть с тобой - это всё, о чём я мечтал 🌹',
+  ];
+  const phrase = phrases[Math.floor(totalDays / 60) % phrases.length];
+
+  document.getElementById('togetherCounter').innerHTML = `
+    <div class="counter-top-label">Мы вместе уже</div>
+    <div class="counter-main-row">
+      <div class="counter-box">
+        <div class="counter-num">${y}</div>
+        <div class="counter-label">${y === 1 ? 'год' : 'лет'}</div>
+      </div>
+      <div class="counter-sep">·</div>
+      <div class="counter-box">
+        <div class="counter-num">${m}</div>
+        <div class="counter-label">${m===1?'месяц':m<5?'месяца':'месяцев'}</div>
+      </div>
+      <div class="counter-sep">·</div>
+      <div class="counter-box">
+        <div class="counter-num">${d}</div>
+        <div class="counter-label">${d===1?'день':d<5?'дня':'дней'}</div>
+      </div>
+    </div>
+    <div class="counter-days-total">${totalDays.toLocaleString('ru')} дней счастья</div>
+
+    <div class="counter-phrase">${phrase}</div>
+  `;
+}
+
+function renderCalendar() {
+  const title = document.getElementById('calMonthTitle');
+  const grid  = document.getElementById('calGrid');
+  if (!title || !grid) return;
+
+  title.textContent = `${MONTHS_RU[calMonth]} ${calYear}`;
+
+  const today   = new Date();
+  const firstDay = new Date(calYear, calMonth, 1);
+  // Monday-based: 0=Mon … 6=Sun
+  let startDow = (firstDay.getDay() + 6) % 7;
+  const daysInMonth   = new Date(calYear, calMonth + 1, 0).getDate();
+  const daysInPrevMonth = new Date(calYear, calMonth, 0).getDate();
+
+  let html = DOWS.map(d => `<div class="cal-dow">${d}</div>`).join('');
+
+  // Prev month trailing days
+  for (let i = startDow - 1; i >= 0; i--) {
+    html += `<div class="cal-day other-month">${daysInPrevMonth - i}</div>`;
+  }
+
+  // Current month days
+  for (let d = 1; d <= daysInMonth; d++) {
+    const thisDate = new Date(calYear, calMonth, d);
+    const isToday   = today.getFullYear()===calYear && today.getMonth()===calMonth && today.getDate()===d;
+    const isWedding = calMonth===2 && d===16; // March 16 any year
+    const isPast    = thisDate >= WEDDING && thisDate <= today && !isWedding;
+
+    let cls = 'cal-day';
+    if (isWedding) cls += ' wedding-day';
+    else if (isToday) cls += ' today';
+    else if (isPast) cls += ' past-married';
+
+    html += `<div class="${cls}">${d}</div>`;
+  }
+
+  // Next month leading days
+  const total = startDow + daysInMonth;
+  const trailing = total % 7 === 0 ? 0 : 7 - (total % 7);
+  for (let d = 1; d <= trailing; d++) {
+    html += `<div class="cal-day other-month">${d}</div>`;
+  }
+
+  grid.innerHTML = html;
+}
+
+function calPrev() {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+function calNext() {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+function calGoToWedding() {
+  calYear = 2024; calMonth = 2;
+  renderCalendar();
+  // scroll calendar into view smoothly
+  document.querySelector('.cal-wrap').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// Refresh counter every second for live clock
+setInterval(renderCounter, 1000);
+// Init calendar when page4 becomes visible — hook into goTo
+const _origGoTo = goTo;
+let mapInitialized = false;
+goTo = function(pageId) {
+  _origGoTo(pageId);
+  if (pageId === 'page4') calInit();
+  if (pageId === 'page6' && !mapInitialized) { mapInitialized = true; initLoveMap(); }
+};
+</script>
+
+<!-- Leaflet CSS & JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<!-- SoundCloud Widget API -->
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+// ─── LOVE MAP ────────────────────────────────────────────────
+const places = [
+  {
+    lat: 43.348331, lng: 132.066511,
+    emoji: '💘', color: '#e91e8c',
+    title: 'Место знакомства',
+    desc: 'Магазин «Ягодка», пос. Угловое',
+    category: 'Знакомство'
+  },
+  {
+    lat: 43.7995859, lng: 131.9540273,
+    emoji: '💍', color: '#c2648a',
+    title: 'Наш ЗАГС',
+    desc: 'г. Уссурийск, ул. Пушкина',
+    category: 'Свадьба'
+  },
+  {
+    lat: 43.7798167, lng: 131.9575475,
+    emoji: '🏠', color: '#f4a7b9',
+    title: 'Наш дом',
+    desc: 'г. Уссурийск, ул. Раздольная 22',
+    category: 'Дом'
+  },
+  {
+    lat: 43.5004981, lng: 131.9692279,
+    emoji: '🦁', color: '#e8749a',
+    title: 'Парк «Белый лев»',
+    desc: 'Наше любимое место для прогулок',
+    category: 'Любимые места'
+  },
+  {
+    lat: 43.1143341, lng: 132.0116424,
+    emoji: '🐴', color: '#d4789a',
+    title: 'Владконтур',
+    desc: 'Конный клуб',
+    category: 'Любимые места'
+  },
+  {
+    lat: 43.117009, lng: 131.881918,
+    emoji: '🍜', color: '#c2648a',
+    title: 'Ресторан GANGNAM',
+    desc: 'г. Владивосток',
+    category: 'Любимые места'
+  },
+  {
+    lat: 43.0731088, lng: 131.8431355,
+    emoji: '🏮', color: '#e8749a',
+    title: 'Маяк Токаревского',
+    desc: 'г. Владивосток',
+    category: 'Любимые места'
+  },
+  {
+    lat: 43.1062251, lng: 131.8698892,
+    emoji: '☕', color: '#f2a7c3',
+    title: 'Кофейня 93 градуса',
+    desc: 'г. Владивосток',
+    category: 'Любимые места'
+  }
+];
+
+function makePinIcon(emoji, color) {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 40 50">
+      <defs>
+        <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="${color}" flood-opacity="0.4"/>
+        </filter>
+      </defs>
+      <ellipse cx="20" cy="47" rx="7" ry="3" fill="rgba(0,0,0,0.15)"/>
+      <path d="M20 2 C11 2 4 9 4 18 C4 30 20 46 20 46 C20 46 36 30 36 18 C36 9 29 2 20 2Z"
+            fill="${color}" filter="url(#shadow)"/>
+      <circle cx="20" cy="18" r="11" fill="white" opacity="0.9"/>
+      <text x="20" y="23" text-anchor="middle" font-size="13">${emoji}</text>
+    </svg>`;
+  return L.divIcon({
+    html: svg,
+    className: '',
+    iconSize: [40, 50],
+    iconAnchor: [20, 50],
+    popupAnchor: [0, -52]
+  });
+}
+
+function initLoveMap() {
+  const map = L.map('loveMap', {
+    center: [43.4, 131.95],
+    zoom: 8,
+    zoomControl: true,
+    attributionControl: false
+  });
+
+  // Soft tile layer
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO',
+    maxZoom: 18
+  }).addTo(map);
+
+  // Add markers
+  places.forEach(p => {
+    const marker = L.marker([p.lat, p.lng], { icon: makePinIcon(p.emoji, p.color) }).addTo(map);
+    marker.bindPopup(`
+      <span class="popup-emoji">${p.emoji}</span>
+      <div class="popup-title">${p.title}</div>
+      <div class="popup-desc">${p.desc}</div>
+    `, { className: 'love-popup', maxWidth: 200 });
+  });
+
+  // Draw a soft dashed line connecting the story places
+  const storyLine = [
+    [43.348331, 132.066511],  // знакомство
+    [43.7995859, 131.9540273], // загс
+    [43.7798167, 131.9575475]  // дом
+  ];
+  L.polyline(storyLine, {
+    color: '#f4a7b9',
+    weight: 2,
+    dashArray: '6 8',
+    opacity: 0.7
+  }).addTo(map);
+
+  // Legend
+  const categories = [...new Set(places.map(p => p.category))];
+  const catColors = {};
+  places.forEach(p => catColors[p.category] = p.color);
+  const legend = document.getElementById('mapLegend');
+  categories.forEach(cat => {
+    const item = document.createElement('div');
+    item.className = 'map-legend-item';
+    item.innerHTML = `<div class="map-legend-dot" style="background:${catColors[cat]}"></div>${cat}`;
+    item.onclick = () => {
+      const p = places.find(x => x.category === cat);
+      map.setView([p.lat, p.lng], 12, { animate: true });
+    };
+    legend.appendChild(item);
+  });
+}
+
+// ─── REASONS ─────────────────────────────────────────────────
+const reasons = [
+  'За твою улыбку, которая освещает наш путь',
+  'За то, как ты любишь нашу доченьку - по-настоящему и нежно',
+  'За твое понимание и советы, когда мне было тяжело',
+  'За то, как ты умеешь слушать',
+  'За твой смех. Он самый красивый, что я слышал в жизни',
+  'За то, что ты делаешь наш дом тёплым и живым',
+  'За твою заботу - самую важную для меня',
+  'За то, что ты выбираешь меня каждый день',
+  'За твою нежность, которую ты умеешь дарить просто так',
+  'За то, как ты веришь в меня - даже когда я сам не верю',
+  'За твои глаза, в которых я вижу весь свой мир',
+  'За то, что ты умеешь прощать и двигаться вперёд раз за разом',
+  'За общие мечты, которые мы строим вместе',
+  'За твою силу воли. Ты сильнее, чем думаешь',
+  'За то, как ты обнимаешь и целуешь - крепко, нежно и по-настоящему',
+  'За твой характер - живой, настоящий, твой',
+  'За то, что рядом с тобой я становлюсь лучше',
+  'За то, как ты относишься ко всему - с теплом и уважением',
+  'За каждое утро, которое ты делаешь особенным',
+  'За то, что ты моя семья, мой дом, моя любовь навсегда'
+];
+
+function initReasons() {
+  const grid = document.getElementById('reasonsGrid');
+  if (!grid || grid.children.length > 0) return;
+  reasons.forEach((text, i) => {
+    const card = document.createElement('div');
+    card.className = 'reason-card';
+    card.innerHTML = `
+      <div class="reason-inner">
+        <div class="reason-front">
+          <div class="reason-front-heart">💗</div>
+          <div class="reason-front-num">${i + 1}</div>
+          <div class="reason-front-hint">нажми</div>
+        </div>
+        <div class="reason-back">
+          <div class="reason-back-text">${text}</div>
+        </div>
+      </div>`;
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+}
+
+const _origGoTo2 = goTo;
+goTo = function(pageId) {
+  _origGoTo2(pageId);
+  if (pageId === 'page7') initReasons();
+};
+// ─── FUTURE LETTER ───────────────────────────────────────────
+const FUTURE_DATE = new Date(2029, 2, 16); // 16 марта 2029
+
+function initFutureLetter() {
+  renderFutureCountdown();
+  setInterval(renderFutureCountdown, 60000);
+}
+
+function renderFutureCountdown() {
+  const now = new Date();
+  const diff = FUTURE_DATE - now;
+  if (diff <= 0) {
+    // Date has passed — show letter automatically
+    unlockLetter();
+    return;
+  }
+  const days   = Math.floor(diff / 86400000);
+  const months = Math.floor(days / 30.44);
+  const years  = Math.floor(days / 365.25);
+  const remMonths = Math.floor((days % 365.25) / 30.44);
+  const remDays   = Math.floor(days % 30.44);
+
+  const el = document.getElementById('futureCountdown');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="future-count-box">
+      <div class="future-count-num">${years}</div>
+      <div class="future-count-label">${years===1?'год':years<5?'года':'лет'}</div>
+    </div>
+    <div class="future-count-box">
+      <div class="future-count-num">${remMonths}</div>
+      <div class="future-count-label">${remMonths===1?'месяц':remMonths<5?'месяца':'месяцев'}</div>
+    </div>
+    <div class="future-count-box">
+      <div class="future-count-num">${remDays}</div>
+      <div class="future-count-label">${remDays===1?'день':remDays<5?'дня':'дней'}</div>
+    </div>
+    <div style="width:100%;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--soft);">до открытия письма</div>
+  `;
+}
+
+function unlockLetter() {
+  document.getElementById('futureLocked').style.display = 'none';
+  const paper = document.getElementById('futurePaper');
+  paper.classList.add('visible');
+  paper.style.display = 'block';
+}
+
+// ─── MUSIC PAGE ──────────────────────────────────────────────
+function initMusicPage() {
+  const notes = ['🎵', '🎶', '♪', '♫', '🎼'];
+  const container = document.getElementById('musicNotes');
+  if (!container || container.children.length > 0) return;
+
+  // Spawn floating notes
+  for (let i = 0; i < 12; i++) {
+    const note = document.createElement('div');
+    note.className = 'music-note';
+    note.textContent = notes[Math.floor(Math.random() * notes.length)];
+    note.style.left = Math.random() * 100 + '%';
+    note.style.fontSize = (Math.random() * 0.8 + 0.7) + 'rem';
+    const dur = Math.random() * 5 + 5;
+    note.style.animationDuration = dur + 's';
+    note.style.animationDelay = Math.random() * 6 + 's';
+    container.appendChild(note);
+  }
+
+  // Spin vinyl when SoundCloud plays
+  const iframe = document.getElementById('scPlayer');
+  if (iframe && window.SC) {
+    const widget = SC.Widget(iframe);
+    widget.bind(SC.Widget.Events.PLAY, () => {
+      document.getElementById('vinyl')?.classList.add('playing');
+    });
+    widget.bind(SC.Widget.Events.PAUSE, () => {
+      document.getElementById('vinyl')?.classList.remove('playing');
+    });
+    widget.bind(SC.Widget.Events.FINISH, () => {
+      document.getElementById('vinyl')?.classList.remove('playing');
+    });
+  }
+}
+
+const _origGoTo4 = goTo;
+goTo = function(pageId) {
+  _origGoTo4(pageId);
+  if (pageId === 'page9') initMusicPage();
+};
+</script>
+</body>
+</html>
